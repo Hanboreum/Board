@@ -40,6 +40,7 @@ public class DatabaseConfig {
         return factoryBean.getObject();
     }
 
+
     @Bean
     public SqlSessionTemplate sqlSession() throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory());
