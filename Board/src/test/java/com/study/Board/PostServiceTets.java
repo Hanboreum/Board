@@ -1,0 +1,27 @@
+package com.study.Board;
+
+import com.study.Board.domain.post.PostRequest;
+import com.study.Board.domain.post.PostService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class PostServiceTets {
+
+    @Autowired
+    PostService postService;
+
+    @Test
+    void save(){
+        PostRequest params = new PostRequest();
+        params.setTitle("1번 게시글 제목");
+        params.setContent("1번 게시글 내용");
+        params.setWriter("Tester");
+        params.setNoticeYn(false);
+        Long id = postService.savePost(params);
+        System.out.println("  생성된 게시글 ID : "+ id);
+    }
+}
