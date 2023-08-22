@@ -11,8 +11,9 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/post/write.do")
-    public String openPostWrite(Model model){
+     //게시글 작성 페이지
+   @GetMapping("/post/write.do")
+    public String openPostWrite(Model model) {
         return "post/write";
     }
 }
