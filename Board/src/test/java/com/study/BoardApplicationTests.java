@@ -1,4 +1,4 @@
-package com.study.Board;
+package com.study;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
-package com.study.Board;
+package com.study;
 
-import com.study.Board.domain.post.PostRequest;
-import com.study.Board.domain.post.PostService;
+import com.study.domain.post.PostRequest;
+import com.study.domain.post.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
