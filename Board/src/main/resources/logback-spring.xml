@@ -1,21 +1,28 @@
-<cofiguration debug ="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
 
-    <!--Apppenders-->
+    <!-- Appenders -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
-             <Pattern>%d %5p [%c] %m%n</Pattern>
+            <Pattern>%d %5p [%c] %m%n</Pattern>
         </encoder>
     </appender>
 
     <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
-         <encoder>
+        <encoder>
             <charset>UTF-8</charset>
             <Pattern>%d %5p %m%n</Pattern>
         </encoder>
     </appender>
-     <encoder>
-            <charset>UTF-8</charset>
-            <Pattern>%d %5p %m%n</Pattern>
-        </encoder>
-</cofiguration>
+
+    <!-- Logger -->
+    <logger name="com.study" level="DEBUG" appender-ref="console" />
+    <logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog" />
+    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog" />
+
+    <!-- Root Logger -->
+    <root level="off">
+        <appender-ref ref="console" />
+    </root>
+</configuration>
