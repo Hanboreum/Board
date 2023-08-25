@@ -1,0 +1,21 @@
+<cofiguration debug ="true">
+
+    <!--Apppenders-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+             <Pattern>%d %5p [%c] %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+         <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d %5p %m%n</Pattern>
+        </encoder>
+    </appender>
+     <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d %5p %m%n</Pattern>
+        </encoder>
+</cofiguration>
