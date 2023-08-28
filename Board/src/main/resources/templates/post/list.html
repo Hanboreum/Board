@@ -64,11 +64,32 @@
         <script th:inline="javascript">
         /*<![CDATA[*/
 
+             // 페이지가 로드되었을 때, 딱 한 번만 함수를 실행
             window.onload = () => {
-                // 페이지가 로드되었을 때, 딱 한 번만 함수를 실행
+             setQueryStringParams();
                 findAllPost();
             }
 
+             // 쿼리 스트링 파라미터 셋팅
+    function setQueryStringParams() {
+
+        if ( !location.search ) {
+            return false;
+        }
+
+        const form = document.getElementById('searchForm');
+
+        new URLSearchParams(location.search).forEach((value, key) => {
+            if (form[key]) {
+                form[key].value = value;
+            }
+        })
+    }
+           // 게시글 상세 페이지로 이동
+        function goViewPage(id) {
+            const queryString = (location.search) ? location.search + `&id=${id}` : `?id=${id}`;
+            location.href = '/post/view.do' + queryString;
+    }
 
             // 게시글 리스트 조회
             function findAllPost() {
@@ -99,33 +120,32 @@
             }
 
 
-            // 리스트 HTML draw
-            function drawList(list, num) {
+              // 리스트 HTML draw
+    function drawList(list, num) {
 
-                // 1. 렌더링 할 HTML을 저장할 변수
-                let html = '';
+        // 1. 렌더링 할 HTML을 저장할 변수
+        let html = '';
 
-                /*
-                 * 2. 기존에 타임리프(Thymeleaf)를 이용해서 리스트 데이터를 그리던 것과 유사한 로직
-                 *    기존에는 게시글 번호를 (전체 데이터 수 - loop의 인덱스 번호)로 처리했으나, 현재는 (전체 데이터 수 - ((현재 페이지 번호 - 1) * 페이지당 출력할 데이터 개수))로 정밀히 계산
-                 */
-                list.forEach(row => {
-                    html += `
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>${row.noticeYn === false ? num-- : '공지'}</td>
-                            <td class="tl"><a href="/post/view.do?id=${row.id}">${row.title}</a></td>
-                            <td>${row.writer}</td>
-                            <td>${dayjs(row.createdDate).format('YYYY-MM-DD HH:mm')}</td>
-                            <td>${row.viewCnt}</td>
-                        </tr>
-                    `;
-                })
+        /*
+         * 2. 기존에 타임리프(Thymeleaf)를 이용해서 리스트 데이터를 그리던 것과 유사한 로직
+         *    기존에는 게시글 번호를 (전체 데이터 수 - loop의 인덱스 번호)로 처리했으나, 현재는 (전체 데이터 수 - ((현재 페이지 번호 - 1) * 페이지당 출력할 데이터 개수))로 정밀히 계산
+         */
+        list.forEach(row => {
+            html += `
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>${row.noticeYn === false ? num-- : '공지'}</td>
+                    <td class="tl"><a href="javascript:void(0);" onclick="goViewPage(${row.id});">${row.title}</a></td>
+                    <td>${row.writer}</td>
+                    <td>${dayjs(row.createdDate).format('YYYY-MM-DD HH:mm')}</td>
+                    <td>${row.viewCnt}</td>
+                </tr>
+            `;
+        })
 
-                // 3. id가 "list"인 요소를 찾아 HTML을 렌더링
-                document.getElementById('list').innerHTML = html;
-            }
-
+        // 3. id가 "list"인 요소를 찾아 HTML을 렌더링
+        document.getElementById('list').innerHTML = html;
+    }
 
             // 페이지 HTML draw
             function drawPage(pagination, params) {
