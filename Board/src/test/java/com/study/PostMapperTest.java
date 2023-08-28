@@ -1,23 +1,17 @@
 package com.study;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.study.domain.post.PostMapper;
 import com.study.domain.post.PostRequest;
-import com.study.domain.post.PostResponse;
+import com.study.domain.post.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 public class PostMapperTest {
 
     @Autowired
-    PostMapper postMapper;
-
+    PostService postService;
+    /**
     @Test
     void save() {
         PostRequest params = new PostRequest();
@@ -70,5 +64,18 @@ public class PostMapperTest {
         postMapper.deleteById(1L);
         System.out.println("삭제 이후의 전체 게시글 개수는 :"+postMapper.findAll().size()+" 개 입니다.");
     }
+**/
 
-}
+    @Test
+    void saveByForeach() {
+        for (int i = 1; i <= 1000; i++) {
+            PostRequest params = new PostRequest();
+            params.setTitle(i + "번 게시글 제목");
+            params.setContent(i + "번 게시글 내용");
+            params.setWriter("테스터" + i);
+            params.setNoticeYn(false);
+            postService.savePost(params);
+        }
+      }
+    }
+
