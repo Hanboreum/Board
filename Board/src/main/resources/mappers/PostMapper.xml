@@ -70,12 +70,12 @@
         SELECT
         <include refid="postColumns" />
         FROM
-        tb_post
+             tb_post
         WHERE
-        delete_yn = 0
+            delete_yn = 0
         ORDER BY
-        id DESC
-        LIMIT #{offset}, #{recordSize}
+            id DESC
+        LIMIT #{pagination.limitStart}, #{recordSize}
     </select>
 
 
