@@ -70,11 +70,12 @@
         SELECT
         <include refid="postColumns" />
         FROM
-             tb_post
+        tb_post
         WHERE
-            delete_yn = 0
+        delete_yn = 0
+        <include refid="search" />
         ORDER BY
-            id DESC
+        id DESC
         LIMIT #{pagination.limitStart}, #{recordSize}
     </select>
 
@@ -87,8 +88,8 @@
         tb_post
         WHERE
         delete_yn = 0
+        <include refid="search" />
     </select>
-
     <!-- 게시글 검색 -->
     <sql id="search">
         <!-- 검색 키워드가 있을 때 -->
