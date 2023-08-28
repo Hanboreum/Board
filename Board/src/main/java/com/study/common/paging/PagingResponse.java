@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-
-public class PagingResponse <T>{
+public class PagingResponse<T> {
 
     private List<T> list = new ArrayList<>();
     private Pagination pagination;
@@ -15,7 +14,6 @@ public class PagingResponse <T>{
     public PagingResponse(List<T> list, Pagination pagination) {
         this.list.addAll(list);
         this.pagination = pagination;
-
     }
 
 }
