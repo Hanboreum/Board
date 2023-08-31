@@ -1,10 +1,9 @@
 package com.study.domain.comment;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +17,9 @@ public class CommentApiController {
         Long id = commentService.saveComment(params);
         return commentService.findCommentById(id);
     }
-
+    // 댓글 리스트 조회
+    @GetMapping("/posts/{postId}/comments")
+    public List<CommentResponse> findAllComment(@PathVariable final Long postId) {
+        return commentService.findAllComment(postId);
+    }
 }

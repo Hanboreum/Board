@@ -57,6 +57,11 @@
                     </fieldset>
                 </div>
 
+                <!--/* 댓글 렌더링 영역 */-->
+                <div class="cm_list">
+
+                </div>
+
             </section>
         </div> <!--/* .content */-->
     </th:block>
@@ -64,6 +69,30 @@
     <th:block layout:fragment="script">
         <script th:inline="javascript">
         /*<![CDATA[*/
+
+    window.onload = () => {
+        findAllComment();
+    }
+
+
+    // 전체 댓글 조회
+    function findAllComment() {
+
+        const postId = [[ ${post.id} ]];
+
+        $.ajax({
+            url : `/posts/${postId}/comments`,
+            type : 'get',
+            dataType : 'json',
+            async : false,
+            success : function (response) {
+                console.log(response);
+            },
+            error : function (request, status, error) {
+                console.log(error)
+            }
+        })
+    }
 
            // 댓글 길이 카운팅
     function countingLength(content) {
