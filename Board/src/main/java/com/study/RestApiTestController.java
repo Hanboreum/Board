@@ -15,9 +15,8 @@ public class RestApiTestController {
     private final PostService postService;
 
     @GetMapping("/posts")
-    public PagingResponse<PostResponse>findAllPost(){
+    public PagingResponse<PostResponse> findAllPost() {
         return postService.findAllPost(new SearchDto());
     }
-
 
 }

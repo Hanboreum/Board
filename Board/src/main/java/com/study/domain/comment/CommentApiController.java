@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class CommentApiController {
-    final CommentService commentService;
+
+    private final CommentService commentService;
 
     // 신규 댓글 생성
     @PostMapping("/posts/{postId}/comments")

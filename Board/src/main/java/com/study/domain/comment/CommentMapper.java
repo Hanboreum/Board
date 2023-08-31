@@ -7,7 +7,6 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
 
-
     /**
      * 댓글 저장
      * @param params - 댓글 정보

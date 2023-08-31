@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
-@Getter@AllArgsConstructor
+@Getter
+@AllArgsConstructor
 
 
 public class MessageDto {
