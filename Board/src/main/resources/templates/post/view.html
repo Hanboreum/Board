@@ -187,6 +187,7 @@
                 // 3. 댓글 HTML 추가
                 response.forEach(row => {
                     commentHtml += `
+                        <button type="button" onclick="deleteComment(${row.id});" class="btns"><span class="icons icon_del">삭제</span></button>
                         <div>
                             <span class="writer_img"><img src="/images/default_profile.png" width="30" height="30" alt="기본 프로필 이미지"/></span>
                             <p class="writer">
