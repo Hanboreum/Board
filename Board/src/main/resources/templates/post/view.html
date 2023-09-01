@@ -99,7 +99,7 @@
     window.onload = () => {
         findAllComment();
 
-                // 댓글 삭제
+                   // 댓글 삭제
     function deleteComment(id) {
 
         if ( !confirm('선택하신 댓글을 삭제할까요?') ) {
@@ -107,21 +107,10 @@
         }
 
         const postId = [[ ${post.id} ]];
-
-        $.ajax({
-            url : `/posts/${postId}/comments/${id}`,
-            type : 'delete',
-            dataType : 'json',
-            async : false,
-            success : function (response) {
-                alert('삭제되었습니다.');
-                findAllComment();
-            },
-            error : function (request, status, error) {
-                console.log(error)
-            }
-        })
-    }
+        const uri = `/posts/${postId}/comments/${id}`;
+        callApi(uri, 'delete');
+        alert('삭제되었습니다.');
+        findAllComment();
     }
             // 댓글 수정
     function updateComment(id) {
