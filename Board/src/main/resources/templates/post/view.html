@@ -245,36 +245,25 @@
     }
 
 
-        // 댓글 저장
+            // 댓글 저장
     function saveComment() {
 
         const content = document.getElementById('content');
         isValid(content, '댓글');
 
         const postId = [[ ${post.id} ]];
+        const uri = `/posts/${postId}/comments`;
         const params = {
             postId : postId,
             content : content.value,
             writer : '홍길동'
         }
 
-        $.ajax({
-            url : `/posts/${postId}/comments`,
-            type : 'post',
-            contentType : 'application/json; charset=utf-8',
-            dataType : 'json',
-            data : JSON.stringify(params),
-            async : false,
-            success : function (response) {
-                alert('저장되었습니다.');
-                content.value = '';
-                document.getElementById('counter').innerText = '0/300자';
-                findAllComment();
-            },
-            error : function (request, status, error) {
-                console.log(error)
-            }
-        })
+        callApi(uri, 'post', params);
+        alert('저장되었습니다.');
+        content.value = '';
+        document.getElementById('counter').innerText = '0/300자';
+        findAllComment(1);
     }
             // 게시글 수정 페이지로 이동
     function goWritePage() {
