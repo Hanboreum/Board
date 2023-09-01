@@ -103,35 +103,8 @@
     window.onload = () => {
         findAllComment();
 
-            // 댓글 HTML draw
-    function drawComments(list) {
 
-        if ( !list.length ) {
-            document.querySelector('.cm_list').innerHTML = '<div class="cm_none"><p>등록된 댓글이 없습니다.</p></div>';
-            return false;
-        }
 
-        let commentHtml = '';
-
-        list.forEach(row => {
-            commentHtml += `
-                <div>
-                    <span class="writer_img"><img src="/images/default_profile.png" width="30" height="30" alt="기본 프로필 이미지"/></span>
-                    <p class="writer">
-                        <em>${row.writer}</em>
-                        <span class="date">${dayjs(row.createdDate).format('YYYY-MM-DD HH:mm')}</span>
-                    </p>
-                    <div class="cont"><div class="txt_con">${row.content}</div></div>
-                    <p class="func_btns">
-                        <button type="button" onclick="openCommentUpdatePopup(${row.id});" class="btns"><span class="icons icon_modify">수정</span></button>
-                        <button type="button" onclick="deleteComment(${row.id});" class="btns"><span class="icons icon_del">삭제</span></button>
-                    </p>
-                </div>
-            `;
-        })
-
-        document.querySelector('.cm_list').innerHTML = commentHtml;
-    }
 
                    // 댓글 삭제
     function deleteComment(id) {
@@ -245,7 +218,7 @@
     }
 
 
-            // 댓글 저장
+         // 댓글 저장
     function saveComment() {
 
         const content = document.getElementById('content');
