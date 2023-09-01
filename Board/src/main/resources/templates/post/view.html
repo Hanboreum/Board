@@ -100,6 +100,35 @@
         findAllComment();
     }
 
+        // 댓글 수정 팝업 open
+    function openCommentUpdatePopup(id) {
+
+        const postId = [[ ${post.id} ]];
+
+        $.ajax({
+            url : `/posts/${postId}/comments/${id}`,
+            type : 'get',
+            dataType : 'json',
+            async : false,
+            success : function (response) {
+                document.getElementById('modalWriter').value = response.writer;
+                document.getElementById('modalContent').value = response.content;
+                document.getElementById('commentUpdateBtn').setAttribute('onclick', `updateComment(${id})`);
+                layerPop('commentUpdatePopup');
+            },
+            error : function (request, status, error) {
+                console.log(error)
+            }
+        })
+    }
+
+
+    // 댓글 수정 팝업 close
+    function closeCommentUpdatePopup() {
+        document.querySelectorAll('#modalContent, #modalWriter').forEach(element => element.value = '');
+        document.getElementById('commentUpdateBtn').removeAttribute('onclick');
+        layerPopClose('commentUpdatePopup');
+    }
 
         // 전체 댓글 조회
     function findAllComment() {
