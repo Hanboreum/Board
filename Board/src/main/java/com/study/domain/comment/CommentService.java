@@ -59,10 +59,9 @@ public class CommentService {
 
     /**
      * 댓글 리스트 조회
-     * @param postId - 게시글 번호 (FK)
-     * @return 특정 게시글에 등록된 댓글 리스트
+     * @param params - search conditions
+     * @return list & pagination information
      */
-
     public PagingResponse<CommentResponse> findAllComment(final CommentSearchDto params) {
 
         int count = commentMapper.count(params);
@@ -74,4 +73,5 @@ public class CommentService {
         List<CommentResponse> list = commentMapper.findAll(params);
         return new PagingResponse<>(list, pagination);
     }
+
 }

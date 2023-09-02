@@ -34,13 +34,6 @@ public interface CommentMapper {
 
     /**
      * 댓글 리스트 조회
-     * @param postId - 게시글 번호 (FK)
-     * @return 댓글 리스트
-     */
-    List<CommentResponse> findAll(Long postId);
-
-    /**
-     * 댓글 리스트 조회
      * @param params - search conditions
      * @return 댓글 리스트
      */
@@ -52,4 +45,5 @@ public interface CommentMapper {
      * @return 댓글 수
      */
     int count(CommentSearchDto params);
+
 }

@@ -5,8 +5,8 @@ import com.study.common.paging.Pagination;
 import com.study.common.paging.PagingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class PostService {
      * @param params - 게시글 정보
      * @return Generated PK
      */
-    @Transactional
+    @javax.transaction.Transactional
     public Long savePost(final PostRequest params) {
         postMapper.save(params);
         return params.getId();
