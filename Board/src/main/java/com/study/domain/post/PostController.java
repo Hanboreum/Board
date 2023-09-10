@@ -77,13 +77,12 @@ public class PostController {
     // 신규 게시글 생성
     @PostMapping("/post/save.do")
     public String savePost(final PostRequest params, Model model) {
-        Long id = postService.savePost(params);
-        List<FileRequest> files = fileUtils.uploadFiles(params.getFiles());
-        fileService.saveFiles(id, files);
+        Long id = postService.savePost(params);  // 1. 게시글 INSERT
+        List<FileRequest> files = fileUtils.uploadFiles(params.getFiles()); // 2. 디스크에 파일 업로드
+        fileService.saveFiles(id, files); // 3. 업로드 된 파일 정보를 DB에 저장
         MessageDto message = new MessageDto("게시글 생성이 완료되었습니다.", "/post/list.do", RequestMethod.GET, null);
         return showMessageAndRedirect(message, model);
     }
-
 
     // 기존 게시글 수정
     @PostMapping("/post/update.do")
