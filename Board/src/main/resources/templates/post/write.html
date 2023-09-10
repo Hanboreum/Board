@@ -118,8 +118,23 @@
             input.value = response[i].originalName;
         })
     }
-                // 파일 선택
-    function selectFile(element) {
+        // 파일 삭제 처리용 익명 함수
+    const removeFileId = (function() {
+        const ids = [];
+        return {
+            add(id) {
+                if (ids.includes(id)) {
+                    return false;
+                }
+                ids.push(id);
+            },
+            getAll() {
+                return ids;
+            }
+        }
+    }());
+        // 파일 선택
+    function selectFile(element, id) {
 
         const file = element.files[0];
         const filename = element.closest('.file_input').firstElementChild;
@@ -141,9 +156,12 @@
 
         // 3. 파일명 지정
         filename.value = file.name;
+
+        // 4. 삭제할 파일 id 추가
+        if (id) {
+            removeFileId.add(id);
+        }
     }
-
-
     // 파일 추가
     function addFile() {
         const fileDiv = document.createElement('div');
