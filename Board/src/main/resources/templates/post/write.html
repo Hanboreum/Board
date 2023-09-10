@@ -178,8 +178,15 @@
     }
 
 
-    // 파일 삭제
-    function removeFile(element) {
+     // 파일 삭제
+    function removeFile(element, id) {
+
+        // 1. 삭제할 파일 id 추가
+        if (id) {
+            removeFileId.add(id);
+        }
+
+        // 2. 파일 영역 초기화 & 삭제
         const fileAddBtn = element.nextElementSibling;
         if (fileAddBtn) {
             const inputs = element.previousElementSibling.querySelectorAll('input');
