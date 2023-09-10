@@ -1,6 +1,7 @@
 package com.study.domain.file;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ public class FileUtils {
 
     /**
      * 다중 파일 업로드
+     *
      * @param multipartFiles - 파일 객체 List
      * @return DB에 저장할 파일 정보 List
      */
@@ -36,6 +38,7 @@ public class FileUtils {
 
     /**
      * 단일 파일 업로드
+     *
      * @param multipartFile - 파일 객체
      * @return DB에 저장할 파일 정보
      */
@@ -65,6 +68,7 @@ public class FileUtils {
 
     /**
      * 저장 파일명 생성
+     *
      * @param filename 원본 파일명
      * @return 디스크에 저장할 파일명
      */
@@ -76,6 +80,7 @@ public class FileUtils {
 
     /**
      * 업로드 경로 반환
+     *
      * @return 업로드 경로
      */
     private String getUploadPath() {
@@ -84,6 +89,7 @@ public class FileUtils {
 
     /**
      * 업로드 경로 반환
+     *
      * @param addPath - 추가 경로
      * @return 업로드 경로
      */
@@ -93,6 +99,7 @@ public class FileUtils {
 
     /**
      * 업로드 폴더(디렉터리) 생성
+     *
      * @param path - 업로드 경로
      * @return 업로드 경로
      */
@@ -104,4 +111,41 @@ public class FileUtils {
         return dir.getPath();
     }
 
+    /**
+     * 파일 삭제 (from Disk)
+     *
+     * @param files - 삭제할 파일 정보 List
+     */
+    public void deleteFiles(final List<FileResponse> files) {
+        if (CollectionUtils.isEmpty(files)) {
+            return;
+        }
+        for (FileResponse file : files) {
+            String uploadedDate = file.getCreatedDate().toLocalDate().format(DateTimeFormatter.ofPattern("yyMMdd"));
+            deleteFile(uploadedDate, file.getSaveName());
+        }
+    }
+
+    /**
+     * 파일 삭제 (from Disk)
+     *
+     * @param addPath  - 추가 경로
+     * @param filename - 파일명
+     */
+    private void deleteFile(final String addPath, final String filename) {
+        String filePath = Paths.get(uploadPath, addPath, filename).toString();
+        deleteFile(filePath);
+    }
+
+    /**
+     * 파일 삭제 (from Disk)
+     *
+     * @param filePath - 파일 경로
+     */
+    private void deleteFile(final String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
 }
