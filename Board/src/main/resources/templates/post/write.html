@@ -242,6 +242,7 @@
 
                 document.getElementById('saveBtn').disabled = true;
                 form.noticeYn.value = form.isNotice.checked;
+                form.removeFileIds.value = removeFileId.getAll().join(); // 추가
                 form.action = [[ ${post == null} ]] ? '/post/save.do' : '/post/update.do';
                 form.submit();
             }
