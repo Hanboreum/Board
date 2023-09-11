@@ -1,12 +1,16 @@
 package com.study.domain.file;
 
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -148,4 +152,25 @@ public class FileUtils {
             file.delete();
         }
     }
+
+    /**
+     * 다운로드할 첨부파일(리소스) 조회 (as Resource)
+     * @param file - 첨부파일 상세정보
+     * @return 첨부파일(리소스)
+     */
+    public Resource readFileAsResource(final FileResponse file) {
+        String uploadedDate = file.getCreatedDate().toLocalDate().format(DateTimeFormatter.ofPattern("yyMMdd"));
+        String filename = file.getSaveName();
+        Path filePath = Paths.get(uploadPath, uploadedDate, filename);
+        try {
+            Resource resource = new UrlResource(filePath.toUri());
+            if (resource.exists() == false || resource.isFile() == false) {
+                throw new RuntimeException("file not found : " + filePath.toString());
+            }
+            return resource;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("file not found : " + filePath.toString());
+        }
+    }
+
 }
