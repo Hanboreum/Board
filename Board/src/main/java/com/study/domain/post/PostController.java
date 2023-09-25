@@ -24,9 +24,6 @@ public class PostController {
     private final FileService fileService;
     private final FileUtils fileUtils;
 
-    // 신규 게시글 생성
-
-
     // 사용자에게 메시지를 전달하고, 페이지를 리다이렉트 한다.
     private String showMessageAndRedirect(final MessageDto params, Model model) {
         model.addAttribute("params", params);
@@ -86,7 +83,6 @@ public class PostController {
     }
 
     // 기존 게시글 수정
-    // 기존 게시글 수정
     @PostMapping("/post/update.do")
     public String updatePost(final PostRequest params, final SearchDto queryParams, Model model) {
 
@@ -111,6 +107,8 @@ public class PostController {
         MessageDto message = new MessageDto("게시글 수정이 완료되었습니다.", "/post/list.do", RequestMethod.GET, queryParamsToMap(queryParams));
         return showMessageAndRedirect(message, model);
     }
+
+
     // 게시글 삭제
     @PostMapping("/post/delete.do")
     public String deletePost(@RequestParam final Long id, final SearchDto queryParams, Model model) {

@@ -46,6 +46,7 @@ public class FileService {
         return fileMapper.findAllByIds(ids);
     }
 
+
     /**
      * 파일 삭제 (from Database)
      * @param ids - PK 리스트
@@ -66,4 +67,9 @@ public class FileService {
     public FileResponse findFileById(final Long id) {
         return fileMapper.findById(id);
     }
+
+
+
+
+
 }

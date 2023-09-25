@@ -21,7 +21,7 @@ public class PostService {
      * @param params - 게시글 정보
      * @return Generated PK
      */
-    @javax.transaction.Transactional
+    @Transactional
     public Long savePost(final PostRequest params) {
         postMapper.save(params);
         return params.getId();
