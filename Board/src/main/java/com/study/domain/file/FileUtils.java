@@ -1,7 +1,5 @@
 package com.study.domain.file;
 
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -9,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -150,11 +147,5 @@ public class FileUtils {
         }
     }
 
-    /**
-     * 다운로드할 첨부파일(리소스) 조회 (as Resource)
-     * @param file - 첨부파일 상세정보
-     * @return 첨부파일(리소스)
-     */
 
-    }
 }
