@@ -17,3 +17,5 @@ public class FileResponse {
     private LocalDateTime deletedDate;    // 삭제일시
 
 }
+
+
