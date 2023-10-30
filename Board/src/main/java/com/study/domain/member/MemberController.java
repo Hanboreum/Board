@@ -66,7 +66,7 @@ public class MemberController {
         // 2. 세션에 회원 정보 저장 & 세션 유지 시간 설정
         if (member != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("loginMember", member);
+            session.setAttribute("loginMember", member); //사용자 정보 세션에 저장
             session.setMaxInactiveInterval(60 * 30);
         }
 

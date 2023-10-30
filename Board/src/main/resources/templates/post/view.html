@@ -225,7 +225,7 @@
                 const params = {
                     postId : postId,
                     content : content.value,
-                    writer : 'user'
+                    writer : 'user' //여기에 로그인한 사용자의 id
                 }
 
                 callApi(uri, 'post', params);
