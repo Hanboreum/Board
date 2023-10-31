@@ -216,7 +216,6 @@
 
             // 댓글 저장
             function saveComment() {
-
                 const content = document.getElementById('content');
                 isValid(content, '댓글');
 
@@ -225,7 +224,7 @@
                 const params = {
                     postId : postId,
                     content : content.value,
-                    writer : 'user' //여기에 로그인한 사용자의 id
+                    writer : 'user' //여기에 로그인한 사용자의 id,loginId?
                 }
 
                 callApi(uri, 'post', params);

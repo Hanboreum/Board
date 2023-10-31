@@ -59,7 +59,7 @@ public class MemberController {
     public MemberResponse login(HttpServletRequest request) {
 
         // 1. 회원 정보 조회
-        String loginId = request.getParameter("loginId");
+        String loginId = request.getParameter("loginId"); //이 정보를 받아오기
         String password = request.getParameter("password");
         MemberResponse member = memberService.login(loginId, password);
 
